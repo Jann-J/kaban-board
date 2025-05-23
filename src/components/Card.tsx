@@ -57,7 +57,6 @@ export default function Card({task, onUpdate } : Props){
                     overflowWrap: "break-word",
                     textAlign: "center"
                 }}>
-                <CloseButton onClick={HandleDelete} style={{position: "absolute", right: "8px", top: "8px", zIndex: 1, fontSize: "0.5rem"}}/>
                 {isEditing ? (
                     <div>
                         <FormControl
@@ -75,6 +74,8 @@ export default function Card({task, onUpdate } : Props){
                     </div>
                     ) : (
                         <div >
+                           <CloseButton onClick={HandleDelete} style={{position: "absolute", right: "8px", top: "8px", zIndex: 1, fontSize: "0.5rem"}}/>
+
                             <CardTitle style={{ fontSize: "1rem", wordBreak: "break-word" }}>{task.name}</CardTitle>
                             <div style={{display: "flex", justifyContent: "space-around", marginTop: "1rem" }}>
                                 <Button
