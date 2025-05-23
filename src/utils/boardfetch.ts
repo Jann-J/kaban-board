@@ -12,7 +12,7 @@ export function editTaskName(oldName: string, newName: string): void {
   localStorage.setItem(newName, status);
 }
 
-export function moveTask(name: string, newType: string): void {
+export function moveTask(name: string, newType: TaskStatus): void {
     localStorage.setItem(name, newType);
 }
 

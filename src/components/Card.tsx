@@ -21,14 +21,19 @@ export default function Card({task, onUpdate } : Props){
     }
 
     const handleRename = () => {
-        editTaskName(task.name, newName);
+        if (newName.trim() === task.name) {
+        // Name hasn't changed, just close the editing mode
+        setIsEditing(false);
+        return;
+        }
+        editTaskName(task.name, newName.trim());
+        setIsEditing(false);
         onUpdate();
     }
 
     const moveLeft = () => {
         const idx = statusOrder.indexOf(task.status);
         if (idx > 0) {
-            localStorage.removeItem(task.name);
             localStorage.setItem(task.name, statusOrder[idx - 1]);
             onUpdate();
         }
@@ -37,7 +42,6 @@ export default function Card({task, onUpdate } : Props){
     const moveRight = () => {
         const idx = statusOrder.indexOf(task.status);
         if(idx < statusOrder.length - 1){
-            localStorage.removeItem(task.name);
             localStorage.setItem(task.name, statusOrder[idx+1]);
             onUpdate();
         }
@@ -59,10 +63,15 @@ export default function Card({task, onUpdate } : Props){
                         <FormControl
                             type="text"
                             value={newName}
-                            onChange={(e) => setNewName(e.target.value)}
-                            className=""
+                            onChange={(e) => setNewName(e.target.value)} 
                         />
-                        <Button onClick={handleRename} className="p-1 mt-1">Save</Button>
+                        <div className="d-flex justify-content-around mt-1">
+                            <Button onClick={handleRename} size="sm" variant="success">Save</Button>
+                            <Button onClick={() => {
+                                setNewName(task.name); // Reset back
+                                setIsEditing(false);
+                            }} size="sm" variant="secondary">Cancel</Button>
+                        </div>
                     </div>
                     ) : (
                         <div >
