@@ -2,7 +2,6 @@ import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState } from 'react';
 import BoardLayout from './components/Board';
-import Button from 'react-bootstrap/Button';
 import Alert from 'react-bootstrap/Alert';
 
 function App() {

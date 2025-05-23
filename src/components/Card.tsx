@@ -65,7 +65,7 @@ export default function Card({task, onUpdate } : Props){
                             onChange={(e) => setNewName(e.target.value)} 
                         />
                         <div className="d-flex justify-content-around mt-1">
-                            <Button onClick={handleRename} size="sm" variant="success">Save</Button>
+                            <Button onClick={handleRename} size="sm" variant="success" type="submit">Save</Button>
                             <Button onClick={() => {
                                 setNewName(task.name); // Reset back
                                 setIsEditing(false);
