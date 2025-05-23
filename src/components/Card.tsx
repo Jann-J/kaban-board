@@ -21,7 +21,7 @@ export default function Card({task, onUpdate } : Props){
     }
 
     const handleRename = () => {
-        editTaskName(newName, task.status);
+        editTaskName(task.name, newName);
         onUpdate();
     }
 
@@ -62,7 +62,7 @@ export default function Card({task, onUpdate } : Props){
                             onChange={(e) => setNewName(e.target.value)}
                             className=""
                         />
-                        <Button onClick={handleRename}>Save</Button>
+                        <Button onClick={handleRename} className="p-1 mt-1">Save</Button>
                     </div>
                     ) : (
                         <div >
