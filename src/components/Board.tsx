@@ -1,7 +1,7 @@
 import Button from "react-bootstrap/Button"
 import Card from "./Card"
 import type { TaskStatus } from "../utils/structure"
-import { loadTasks, addTask } from "../utils/boardfetch"
+import { loadTasks, addTask, deleteBoard } from "../utils/boardfetch"
 import { useState } from "react"
 import './index.css';
 
@@ -16,7 +16,13 @@ export default function BoardLayout () {
         refresh();
     }
 
+    const clearBoard = () => {
+        deleteBoard();
+        refresh();
+    }
+
     return (
+        <div>
         <div className="board-container">
             {(["todo", "doing", "testing", "done"] as TaskStatus[]).map((status) => (
                 <div key={status} className="column">
@@ -42,6 +48,11 @@ export default function BoardLayout () {
                     )}
                 </div>
             ))}
+            
+        </div>
+        <div className='col text-center mt-4'>
+            <Button variant='danger' onClick={clearBoard}>Clear Board</Button>
+        </div>
         </div>
     )
 }
